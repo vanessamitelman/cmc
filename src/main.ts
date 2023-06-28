@@ -3,8 +3,8 @@ import './style.css';
 
 interface PriceI {
   title: string;
-  price: number | null;
-  discount: string | null;
+  price: number;
+  discount?: string | undefined;
 }
 interface CategoriesI {
   alt: string;
@@ -12,10 +12,10 @@ interface CategoriesI {
   title: string;
   subtitle: string;
   url: string;
-  pricesData: PriceI[];
+  pricesData: PriceI[] | undefined;
 }
 const data = await getData();
-console.log(data);
+// console.log(data);
 const categories = document.getElementById('categories');
 
 const category = (item: CategoriesI): void => {
@@ -50,7 +50,39 @@ const category = (item: CategoriesI): void => {
   category.appendChild(title);
   category.appendChild(description);
   categories?.appendChild(category);
+
   category.addEventListener('click', (e) => {
+    const { pricesData, subtitle, title } = item;
+    console.log(pricesData);
+    const h1 = document.getElementById('dialogTitle') as HTMLElement;
+
+    h1.textContent = `${subtitle} ${title}`;
+
+    const dialogPrices = document.getElementById(
+      'dialogPrices'
+    ) as HTMLDivElement;
+    dialogPrices.innerHTML = '';
+
+    pricesData?.map((priceItem: PriceI) => {
+      console.log(priceItem);
+      const { title, price, discount } = priceItem;
+      const divTitle = document.createElement('div');
+      divTitle.textContent = title;
+      dialogPrices.appendChild(divTitle);
+
+      if (price > 0) {
+        const divPrice = document.createElement('div');
+        divPrice.textContent = `${price}`;
+        dialogPrices.appendChild(divPrice);
+      }
+
+      if (discount !== undefined) {
+        const divDiscount = document.createElement('div');
+        divDiscount.textContent = discount;
+        dialogPrices.appendChild(divDiscount);
+      }
+    });
+
     dialog?.showModal();
     // backdrop.classList.add('show');
   });
@@ -58,6 +90,6 @@ const category = (item: CategoriesI): void => {
     dialog?.close();
   });
 };
-// data?.map((item) => {
-//   category(item);
-// });
+data?.map((item) => {
+  category(item);
+});
