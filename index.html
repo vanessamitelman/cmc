@@ -12,9 +12,35 @@
     <dialog id="priceList">
       <div class="backdrop"></div>
       <div class="modal-content">
-        <h1 id="dialogTitle"></h1>
+        <button id="closePriceList">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            version="1.1"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            xmlns:svgjs="http://svgjs.com/svgjs"
+            x="0"
+            y="0"
+            viewBox="0 0 24 24"
+            style="enable-background: new 0 0 512 512"
+            xml:space="preserve"
+            class=""
+          >
+            <g>
+              <path
+                d="M16.561 9.561 14.122 12l2.439 2.439-2.121 2.121-2.439-2.439-2.439 2.439-2.121-2.121L9.88 12 7.441 9.561 9.562 7.44l2.439 2.439L14.44 7.44l2.121 2.121ZM24 12c0 6.617-5.383 12-12 12S0 18.617 0 12 5.383 0 12 0s12 5.383 12 12Zm-3 0c0-4.963-4.037-9-9-9s-9 4.037-9 9 4.038 9 9 9 9-4.037 9-9Z"
+                fill="#d1556a"
+                data-original="#000000"
+                class=""
+              ></path>
+            </g>
+          </svg>
+        </button>
+        <div id="dialogTitleWrapper">
+          <h1 id="dialogTitle"></h1>
+          <img src="" alt="" id="dialogImg" />
+        </div>
+
         <p id="dialogPrices"></p>
-        <button id="closePriceList">Close</button>
       </div>
     </dialog>
 

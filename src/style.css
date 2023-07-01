@@ -25,15 +25,6 @@ h3 {
     flex-basis: 20%;
   }
 }
-.categories .category .image img {
-  height: 100px;
-  width: 100px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: center;
-     object-position: center;
-  border-radius: 50%;
-}
 .categories .category h3 {
   color: #ee5f78;
   font-size: 1.5rem;
@@ -51,29 +42,100 @@ h3 {
   border-bottom-left-radius: 90px;
 }
 
-.backdrop {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("/images/backdrop1.jpg"); /* Replace with your image URL */
-  background-size: cover;
-}
-.backdrop.show {
-  display: block;
+.categoryImg {
+  height: 100px;
+  width: 100px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  border-radius: 50%;
 }
 
-#priceList::backdrop {
-  content: "";
+#dialogTitleWrapper {
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+}
+#dialogTitleWrapper #dialogTitle {
+  color: #d0556a;
+  text-shadow: 1px 1px 1px #a64455;
+}
+
+#priceList {
+  border: none;
+  background: transparent;
+}
+#priceList .backdrop {
+  display: block;
+  width: 100%;
+  height: 100%;
   position: fixed;
   top: 0;
   right: 0;
-  width: auto;
-  height: auto;
-  background: url("/images/backdrop3.jpg");
+  background: url("/images/backdrop.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: bottom right;
+  animation: fadeIn 2s ease-in-out forwards;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+#priceList .modal-content {
+  background: #eecfd7;
+  border: none;
+  border-radius: 15px;
+  direction: rtl;
+  padding: 15px;
+  min-width: 320px;
+  animation: priceListMove 1.5s linear forwards;
+}
+@keyframes priceListMove {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  50% {
+    opacity: 0.75;
+  }
+  75% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+#priceList .priceListDivWrapper {
+  display: flex;
+  padding: 6px 0;
+  font-size: 1.2rem;
+}
+#priceList .priceDiscount {
+  flex-basis: 20%;
+}
+#priceList .price {
+  flex-basis: 20%;
+}
+#priceList .priceTitle {
+  flex-basis: 60%;
+}
+#priceList #closePriceList {
+  width: 20px;
+  height: 20px;
+  background: none;
+  border: none;
+  padding: 0;
+  outline: none;
+  cursor: pointer;
+  transition: all 1s ease-in-out;
+}
+#priceList #closePriceList:focus-visible, #priceList #closePriceList:hover, #priceList #closePriceList:focus {
+  transform: rotate(180deg) scale(1.5);
 }/*# sourceMappingURL=style.css.map */

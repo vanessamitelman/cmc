@@ -9,6 +9,7 @@ interface PriceI {
 interface CategoriesI {
   alt: string;
   description: string | null;
+  priceListPermanentTitle: string;
   title: string;
   subtitle: string;
   url: string;
@@ -20,7 +21,7 @@ const categories = document.getElementById('categories');
 
 const category = (item: CategoriesI): void => {
   const dialog = document.getElementById('priceList') as HTMLDialogElement;
-  const backdrop = document.querySelector('.backdrop');
+
   const closeDialog = document.getElementById('closePriceList');
   //create category
   const category = document.createElement('div');
@@ -32,6 +33,7 @@ const category = (item: CategoriesI): void => {
   const img = document.createElement('img');
   img.src = item.url;
   img.alt = item.alt;
+  img.classList.add('categoryImg');
   image.appendChild(img);
 
   //create title
@@ -51,12 +53,17 @@ const category = (item: CategoriesI): void => {
   category.appendChild(description);
   categories?.appendChild(category);
 
-  category.addEventListener('click', (e) => {
-    const { pricesData, subtitle, title } = item;
-    console.log(pricesData);
+  //add click event to open dialog
+  category.addEventListener('click', () => {
+    const dialogImg = document.getElementById('dialogImg') as HTMLImageElement;
+    dialogImg.src = item.url;
+    dialogImg.alt = item.title;
+    dialogImg.classList.add('categoryImg');
+    const { pricesData, title } = item;
+
     const h1 = document.getElementById('dialogTitle') as HTMLElement;
 
-    h1.textContent = `${subtitle} ${title}`;
+    h1.textContent = `${item.priceListPermanentTitle} ${title}`;
 
     const dialogPrices = document.getElementById(
       'dialogPrices'
@@ -64,23 +71,29 @@ const category = (item: CategoriesI): void => {
     dialogPrices.innerHTML = '';
 
     pricesData?.map((priceItem: PriceI) => {
-      console.log(priceItem);
       const { title, price, discount } = priceItem;
-      const divTitle = document.createElement('div');
-      divTitle.textContent = title;
-      dialogPrices.appendChild(divTitle);
+      const divTitleWrapper = document.createElement('div');
+      divTitleWrapper.classList.add('priceListDivWrapper');
 
-      if (price > 0) {
-        const divPrice = document.createElement('div');
-        divPrice.textContent = `${price}`;
-        dialogPrices.appendChild(divPrice);
-      }
-
+      const divDiscount = document.createElement('div');
+      divDiscount.classList.add('priceDiscount');
       if (discount !== undefined) {
-        const divDiscount = document.createElement('div');
         divDiscount.textContent = discount;
-        dialogPrices.appendChild(divDiscount);
       }
+      divTitleWrapper.appendChild(divDiscount);
+
+      const divPrice = document.createElement('div');
+      divPrice.classList.add('price');
+      if (price > 0) {
+        divPrice.textContent = `${price} ₪`;
+      }
+      divTitleWrapper.appendChild(divPrice);
+      const divTitle = document.createElement('div');
+      divTitle.classList.add('priceTitle');
+      divTitle.textContent = title;
+      divTitleWrapper.appendChild(divTitle);
+
+      dialogPrices.appendChild(divTitleWrapper);
     });
 
     dialog?.showModal();
@@ -90,6 +103,6 @@ const category = (item: CategoriesI): void => {
     dialog?.close();
   });
 };
-data?.map((item) => {
+data?.map((item: any): void => {
   category(item);
 });

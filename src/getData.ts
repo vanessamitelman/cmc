@@ -6,11 +6,12 @@ const client = createClient(clientObj);
 const getData = async () => {
   try {
     const { items } = await client.getEntries(contentTypeObj);
-    const data = items.map((item) => {
+    const data = items.map((item: any) => {
       const {
         title,
         subtitle,
         description,
+        priceListPermanentTitle,
         image: {
           fields: {
             file: { url },
@@ -28,6 +29,7 @@ const getData = async () => {
         title,
         subtitle,
         description,
+        priceListPermanentTitle,
         url,
         alt,
         pricesData
