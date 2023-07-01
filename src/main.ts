@@ -35,21 +35,23 @@ const category = (item: CategoriesI): void => {
   img.alt = item.alt;
   img.classList.add('categoryImg');
   image.appendChild(img);
-
+  const titleImageWrapper = document.createElement('div');
+  titleImageWrapper.classList.add('titleImageWrapper');
   //create title
   const title = document.createElement('div');
   title.classList.add('title');
   const h3 = document.createElement('h3');
-  h3.innerHTML = `<span>${item.subtitle}</span> ${item.title}`;
+  h3.innerHTML = `<span>${item.subtitle}</span><br/> ${item.title}`;
   title.appendChild(h3);
 
   //create description
   const description = document.createElement('div');
   description.textContent = item.description;
   description.classList.add('description');
+  titleImageWrapper.appendChild(title);
+  titleImageWrapper.appendChild(image);
 
-  category.appendChild(image);
-  category.appendChild(title);
+  category.appendChild(titleImageWrapper);
   category.appendChild(description);
   categories?.appendChild(category);
 
