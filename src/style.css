@@ -33,7 +33,7 @@ h3 {
 .categories .category h3 span {
   color: #000;
 }
-.categories .category > div:nth-child(n+2) {
+.categories .category > div:nth-child(n + 2) {
   padding-top: 1rem;
 }
 .categories .category .titleImageWrapper {
@@ -56,9 +56,9 @@ h3 {
   height: 100px;
   width: 100px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   -o-object-position: center;
-     object-position: center;
+  object-position: center;
   border-radius: 50%;
 }
 
@@ -83,7 +83,7 @@ h3 {
   position: fixed;
   top: 0;
   right: 0;
-  background: url("/images/backdrop.jpg");
+  background: url('/images/backdrop.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: bottom right;
@@ -150,6 +150,8 @@ h3 {
   cursor: pointer;
   transition: all 1s ease-in-out;
 }
-#priceList #closePriceList:focus-visible, #priceList #closePriceList:hover, #priceList #closePriceList:focus {
+#priceList #closePriceList:focus-visible,
+#priceList #closePriceList:hover,
+#priceList #closePriceList:focus {
   transform: rotate(180deg) scale(1.5);
-}/*# sourceMappingURL=style.css.map */
+} /*# sourceMappingURL=style.css.map */
